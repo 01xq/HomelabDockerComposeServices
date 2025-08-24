@@ -1,0 +1,19 @@
+services:
+  netbird:
+    image: netbirdio/netbird:latest
+    container_name: netbird
+    restart: unless-stopped
+    cap_add:
+      - NET_ADMIN
+    environment:
+      - NB_SETUP_KEY=${NB_SETUP_KEY}
+    volumes:
+      - ./config:/etc/netbird
+      - ./data:/var/lib/netbird
+    networks:
+      homelab:
+        ipv4_address: 172.20.0.13
+
+networks:
+  homelab:
+    external: true

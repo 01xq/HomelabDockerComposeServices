@@ -1,0 +1,21 @@
+services:
+  glance:
+    image: glanceapp/glance
+    container_name: glance
+    restart: unless-stopped
+    ports:
+      - "8081:8080"  # Different port to avoid conflicts
+    volumes:
+      - ./config:/app/config
+    networks:
+      homelab:
+        ipv4_address: 172.20.0.12
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.glance.rule=Host(`glance.local`)"
+      - "traefik.http.routers.glance.entrypoints=web"
+      - "traefik.http.services.glance.loadbalancer.server.port=8080"
+
+networks:
+  homelab:
+    external: true
