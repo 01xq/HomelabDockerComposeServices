@@ -1,0 +1,7 @@
+pages:
+  - name: Home
+    columns:
+      - size: full
+        widgets:
+          - type: calendar
+            first-day-of-week: sunday
