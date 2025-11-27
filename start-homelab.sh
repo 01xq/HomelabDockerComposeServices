@@ -9,7 +9,7 @@ echo "Waiting for AdGuard DNS to be ready..."
 sleep 30
 
 # Start all other services
-for service in traefik glance netbird; do
+for service in traefik glance netbird cert-server; do
     cd /root/homelab/$service
     docker compose up -d
 done

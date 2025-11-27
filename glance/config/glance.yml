@@ -1,7 +1,44 @@
 pages:
-  - name: Home
+  - name: Startpage
+    width: slim
+    hide-desktop-navigation: true
+    center-vertically: true
     columns:
       - size: full
         widgets:
-          - type: calendar
-            first-day-of-week: sunday
+          - type: search
+            autofocus: true
+            search-engine: google
+
+          - type: monitor
+            cache: 1m
+            title: Services
+            sites:
+              - title: Home Assistant
+                url: https://ha.local
+                icon: si:homeassistant
+              - title: traefik
+                url: https://traefik.local
+                icon: si:traefikproxy
+              - title: AdGuard Home
+                url: https://adguard.local
+                icon: si:adguard
+
+          - type: bookmarks
+            groups:
+              - title: General
+                links:
+                  - title: Amazon
+                    url: https://www.amazon.com/
+                  - title: Github
+                    url: https://github.com/
+              - title: Entertainment
+                links:
+                  - title: YouTube
+                    url: https://www.youtube.com/
+              - title: Social
+                links:
+                  - title: Reddit
+                    url: https://www.reddit.com/
+                  - title: Twitter
+                    url: https://x.com/

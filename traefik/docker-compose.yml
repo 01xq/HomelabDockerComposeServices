@@ -11,14 +11,16 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - ./data:/data
       - ./logs:/logs
+      - ./certs:/certs:ro
     networks:
       homelab:
         ipv4_address: 172.20.0.10
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.traefik-dashboard.rule=Host(`traefik.local`)"
-      - "traefik.http.routers.traefik-dashboard.entrypoints=web"
+      - "traefik.http.routers.traefik-dashboard.entrypoints=websecure"
       - "traefik.http.routers.traefik-dashboard.service=api@internal"
+      - "traefik.http.routers.traefik-dashboard.tls=true"
     command:
       - --api.dashboard=true
       - --api.insecure=true
@@ -27,6 +29,8 @@ services:
       - --providers.file.filename=/data/dynamic-config.yml
       - --providers.file.watch=true
       - --entrypoints.web.address=:80
+      - --entrypoints.web.http.redirections.entrypoint.to=websecure
+      - --entrypoints.web.http.redirections.entrypoint.scheme=https
       - --entrypoints.websecure.address=:443
       - --log.level=INFO
 

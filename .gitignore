@@ -1,7 +1,50 @@
+# Environment files with secrets
 .env
+*.env
+
+# SSL/TLS certificates and private keys
+*.pem
+*.crt
+*.key
+*.p12
+*.pfx
+
+# Service configuration with passwords/tokens/IPs
 conf/
 config/
-data/
-logs/
-
 !glance/config/
+
+# Traefik dynamic config (contains internal IPs)
+traefik/data/dynamic-config.yml
+
+# Runtime data and logs
+data/
+work/
+logs/
+*.log
+
+# Docker volumes and state
+volumes/
+
+# Backup files
+*.bak
+*.backup
+*.tar.gz
+
+# Temporary files
+*.tmp
+*.temp
+.DS_Store
+Thumbs.db
+
+# IDE/Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Keep directory structure but ignore cert files
+traefik/certs/*.crt
+traefik/data/*.pem
+traefik/data/*.key

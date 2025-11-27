@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Stop all other services first
-for service in traefik glance netbird; do
+for service in traefik glance netbird cert-server; do
     echo "Stopping $service..."
     cd /root/homelab/$service
     docker compose down

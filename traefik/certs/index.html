@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homelab CA Certificate</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            border-bottom: 3px solid #4CAF50;
+            padding-bottom: 10px;
+        }
+        .download-btn {
+            display: inline-block;
+            background: #4CAF50;
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 18px;
+            margin: 20px 0;
+            transition: background 0.3s;
+        }
+        .download-btn:hover {
+            background: #45a049;
+        }
+        .instructions {
+            background: #f9f9f9;
+            padding: 20px;
+            border-left: 4px solid #4CAF50;
+            margin: 20px 0;
+        }
+        .platform {
+            margin: 15px 0;
+            padding: 15px;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .platform h3 {
+            margin-top: 0;
+            color: #4CAF50;
+        }
+        code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔒 Homelab CA Certificate</h1>
+        <p>Install this certificate on your device to trust all homelab services and eliminate security warnings.</p>
+        
+        <a href="homelab-ca.crt" download class="download-btn">📥 Download Certificate</a>
+        
+        <div class="instructions">
+            <h2>Installation Instructions</h2>
+            
+            <div class="platform">
+                <h3>🪟 Windows</h3>
+                <ol>
+                    <li>Download and double-click <code>homelab-ca.crt</code></li>
+                    <li>Click "Install Certificate"</li>
+                    <li>Select "Local Machine" → Next</li>
+                    <li>Choose "Place all certificates in the following store"</li>
+                    <li>Browse → Select "Trusted Root Certification Authorities"</li>
+                    <li>Click Next → Finish</li>
+                </ol>
+            </div>
+            
+            <div class="platform">
+                <h3>🍎 macOS</h3>
+                <ol>
+                    <li>Download and double-click <code>homelab-ca.crt</code></li>
+                    <li>It will open in Keychain Access</li>
+                    <li>Select "System" keychain</li>
+                    <li>Find the certificate "mkcert root@docker"</li>
+                    <li>Double-click it → Trust → "Always Trust"</li>
+                </ol>
+            </div>
+            
+            <div class="platform">
+                <h3>🐧 Linux</h3>
+                <pre><code>sudo cp homelab-ca.crt /usr/local/share/ca-certificates/
+sudo update-ca-certificates</code></pre>
+            </div>
+            
+            <div class="platform">
+                <h3>📱 iOS/iPadOS</h3>
+                <ol>
+                    <li>Download the certificate (Safari will prompt to install)</li>
+                    <li>Go to Settings → General → VPN & Device Management</li>
+                    <li>Tap the certificate profile and install it</li>
+                    <li>Go to Settings → General → About → Certificate Trust Settings</li>
+                    <li>Enable full trust for the certificate</li>
+                </ol>
+            </div>
+            
+            <div class="platform">
+                <h3>🤖 Android</h3>
+                <ol>
+                    <li>Download the certificate</li>
+                    <li>Go to Settings → Security → Encryption & credentials</li>
+                    <li>Tap "Install a certificate" → CA certificate</li>
+                    <li>Browse and select the downloaded file</li>
+                </ol>
+            </div>
+            
+            <div class="platform">
+                <h3>🦊 Firefox (All Platforms)</h3>
+                <ol>
+                    <li>Open Firefox → Settings → Privacy & Security</li>
+                    <li>Scroll to "Certificates" → Click "View Certificates"</li>
+                    <li>Go to "Authorities" tab → Click "Import"</li>
+                    <li>Select <code>homelab-ca.crt</code></li>
+                    <li>Check "Trust this CA to identify websites"</li>
+                </ol>
+            </div>
+        </div>
+        
+        <div style="margin-top: 30px; padding: 20px; background: #e3f2fd; border-radius: 5px;">
+            <strong>📝 Note:</strong> After installation, restart your browser to see the changes take effect. 
+            All <code>*.local</code> domains will be trusted.
+        </div>
+    </div>
+</body>
+</html>
