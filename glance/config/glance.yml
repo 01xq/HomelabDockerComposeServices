@@ -23,6 +23,9 @@ pages:
               - title: AdGuard Home
                 url: https://adguard.local
                 icon: si:adguard
+              - title: Apollo
+                url: https://apollo.local
+                icon: si:stadia
 
           - type: bookmarks
             groups:
